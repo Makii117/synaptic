@@ -1,0 +1,17 @@
+{
+  "name": "synaptic",
+  "version": "1.0.0",
+  "description": "Server side api to interact with smart home gadgets and some QOL features",
+  "main": "src/server.js",
+  "scripts": {
+    "dev": "nodemon /src/server.js",
+    "test": "test"
+  },
+  "author": "Makii117",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "nodemon": "^2.0.18"
+  }
+}
