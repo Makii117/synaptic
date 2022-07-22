@@ -1,0 +1,65 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           Int              @id @default(autoincrement())
+  createdAt    DateTime         @default(now())
+  username        String           @unique
+  password     String
+  shopping_list ShoppingList[]
+  shopping_list_item ShoppingListItem[]
+  @@map("user")
+}
+
+model InventoryItem{
+  id Int @id @default(autoincrement())
+  name String 
+  quantity Int
+  category_id Int?
+  inventory_category InventoryCategory? @relation(fields: [category_id],references: [id])
+  @@map("inventory_item")
+
+}
+
+model InventoryCategory{
+  id Int @id @default(autoincrement())
+  name        String
+  created_at  DateTime @default(now())
+  inventory_item     InventoryItem[]
+  shopping_list_item ShoppingListItem[]
+  @@map("inventory_category")
+}
+
+model ShoppingList{
+  id Int @id @default(autoincrement())
+  name String
+  urgency Int
+  created_at DateTime @default(now())
+  added_by Int
+
+  user User @relation(fields:[added_by],references:[id])
+  @@map("shopping_list")
+}
+model ShoppingListItem{
+  id Int @id @default(autoincrement())
+  shopping_list_id Int
+  category_id Int?
+  name String
+  quantity Int
+  created_at DateTime @default(now())
+  added_by Int
+  inventory_category InventoryCategory? @relation(fields:[category_id],references:[id])
+  user User @relation(fields:[added_by],references:[id])
+
+
+  @@map("shopping_list_item")
+}
