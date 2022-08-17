@@ -15,9 +15,11 @@ app.listen(6969);
 console.log("App running")
 
 
+
 //#TODO :
 //  Project structure and routes::
 //  Shopping list,
+//  Finances
 //  Window shutter controls
 //  Lights control
 //  Monitoring
