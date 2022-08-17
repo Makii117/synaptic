@@ -15,6 +15,7 @@ model User {
   createdAt    DateTime         @default(now())
   username        String           @unique
   password     String
+  permissionLevel Int
   shopping_list ShoppingList[]
   shopping_list_item ShoppingListItem[]
   @@map("user")
